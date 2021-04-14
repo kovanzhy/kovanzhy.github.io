@@ -5,6 +5,7 @@
 Added:
 
 - branch develop
+- branch v0.0.1
 
 Updated:
 - chngelog
