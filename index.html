@@ -1,280 +1,443 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kovanzhy Yurii</title>
-<meta name="description" content="">
-<meta name="author" content="">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yurii Kovanzhy | Portfolio</title>
+    <!-- Using a clean system font stack -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica:400,700&display=swap" />
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Favicons
-    ================================================== -->
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
 
-<!-- Bootstrap -->
-<link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-<!-- Stylesheet
-    ================================================== -->
-<link rel="stylesheet" type="text/css"  href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/nivo-lightbox/nivo-lightbox.css">
-<link rel="stylesheet" type="text/css" href="css/nivo-lightbox/default.css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/modernizr.custom.js"></script>
+        /* Header and Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo a {
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+            .logo a:hover {
+                color: #007aff;
+            }
+
+        .menu a {
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+            .menu a:hover {
+                color: #007aff;
+            }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+            .hero h1 {
+                font-size: 3rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+                max-width: 600px;
+                margin-bottom: 2rem;
+            }
+
+        .btn {
+            background-color: #007aff;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn:hover {
+                background-color: #005bb5;
+            }
+
+        /* Main Content Sections */
+        section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+            section h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+
+        /* Timeline for Experience */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+            .timeline-item:hover {
+                transform: scale(1.02);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .timeline-item h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .timeline-item span {
+                font-size: 0.9rem;
+                color: #666;
+                margin-bottom: 1rem;
+                display: block;
+            }
+
+            .timeline-item p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+        /* Grid Layout for Skills and Education */
+        .grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-item {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+            .grid-item:hover {
+                transform: translateY(-3px);
+            }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #f5f5f5;
+        }
+
+        /* Back to Top Button */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #007aff;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+            #scrollTopBtn.show {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+        /* Animation on Scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+            .animate-on-scroll.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            .menu a {
+                margin: 0.5rem;
+            }
+        }
+    </style>
 </head>
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-<!-- Navigation
-    ==========================================-->
-<nav id="menu" class="navbar navbar-default navbar-fixed-top">
-  <div class="container"> 
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="navbar-brand page-scroll" href="#page-top"><i class="fa fa-play fa-rotate-270"></i> Top</a> </div>
-    
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#page-top" class="page-scroll">Top</a></li>
-        <li><a href="#about" class="page-scroll">About</a></li>
-        <li><a href="#portfolio" class="page-scroll">Portfolio</a></li>
-        <li><a href="#contact" class="page-scroll">Contact</a></li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse --> 
-  </div>
-  <!-- /.container-fluid --> 
-</nav>
-<!-- Header -->
-<header id="header">
-  <div class="intro">
-    <div class="container">
-      <div class="row">
-        <div class="intro-text">
-          <h1>Kovanzhy Yurii</h1>
-          <a href="#about" class="btn btn-custom btn-lg page-scroll">About</a> </div>
-      </div>
-    </div>
-  </div>
-</header>
-<!-- About Section -->
-<div id="about">
-  <div class="container">
-    <div class="section-title text-center center">
-      <h2>About Me</h2>
-      <hr>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-6"> <img src="img/about.jpg" class="img-responsive" alt=""> </div>
-      <div class="col-xs-12 col-md-6">
-        <div class="about-text">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare.</p>
-          <a href="#portfolio" class="btn btn-default btn-lg page-scroll">Porfolio</a> </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Portfolio Section -->
-<div id="portfolio">
-  <div class="container">
-    <div class="section-title text-center center">
-      <h2>Porfolio</h2>
-      <hr>
-    </div>
-    <div class="categories">
-      <ul class="cat">
-        <li>
-          <ol class="type">
-            <li><a href="#" data-filter="*" class="active">All</a></li>
-            <li><a href="#" data-filter=".web">Web</a></li>
-            <li><a href="#" data-filter=".photography">Photography</a></li>
-            <li><a href="#" data-filter=".product">Product</a></li>
-          </ol>
-        </li>
-      </ul>
-      <div class="clearfix"></div>
-    </div>
-    <div class="row">
-      <div class="portfolio-items">
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/01-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>PSD</h4>
-              </div>
-              <img src="img/portfolio/01-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 product">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/02-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>PNI</h4>
-              </div>
-              <img src="img/portfolio/02-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/03-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>BD</h4>
-              </div>
-              <img src="img/portfolio/03-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/04-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>IA</h4>
-              </div>
-              <img src="img/portfolio/04-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 product">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/05-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>PrCom</h4>
-              </div>
-              <img src="img/portfolio/05-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 photography">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/06-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>PrCO</h4>
-              </div>
-              <img src="img/portfolio/06-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 photography">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/07-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-              </div>
-              <img src="img/portfolio/07-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/08-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-              </div>
-              <img src="img/portfolio/08-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 product">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/09-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-              </div>
-              <img src="img/portfolio/09-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 photography">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/10-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-              </div>
-              <img src="img/portfolio/10-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 photography">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/11-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-              </div>
-              <img src="img/portfolio/11-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/12-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-              </div>
-              <img src="img/portfolio/12-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Contact Section -->
-<div id="contact" class="text-center">
-  <div class="container">
-    <div class="section-title center">
-      <h2>Get In Touch</h2>
-      <hr>
-    </div>
-    <div class="col-md-8 col-md-offset-2">
-      <form name="sentMessage" id="contactForm" novalidate>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <input type="text" id="name" class="form-control" placeholder="Name" required="required">
-              <p class="help-block text-danger"></p>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://www.linkedin.com/in/yurii-kovanzhy/" target="_blank"><strong>Yurii Kovanzhy</strong></a>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <input type="email" id="email" class="form-control" placeholder="Email" required="required">
-              <p class="help-block text-danger"></p>
+            <div class="menu">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
             </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
-          <p class="help-block text-danger"></p>
-        </div>
-        <div id="success"></div>
-        <button type="submit" class="btn btn-default btn-lg">Send Message</button>
-      </form>
-      <div class="social">
-        <ul>
-          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-          <li><a href="#"><i class="fa fa-behance"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="footer">
-  <div class="container text-center">
-    <div class="fnav">
-      <p>Copyright &copy; 2021 YK. Designed by <a href="https://kovanzhyyurii.github.io/" rel="nofollow">YK</a></p>
-    </div>
-  </div>
-</div>
-<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
-<script type="text/javascript" src="js/bootstrap.js"></script> 
-<script type="text/javascript" src="js/SmoothScroll.js"></script> 
-<script type="text/javascript" src="js/nivo-lightbox.js"></script> 
-<script type="text/javascript" src="js/jquery.isotope.js"></script> 
-<script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
-<script type="text/javascript" src="js/contact_me.js"></script> 
-<script type="text/javascript" src="js/main.js"></script>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero animate-on-scroll">
+            <h1>Yurii Kovanzhy</h1>
+            <p>Software Engineer | Senior .NET Developer</p>
+            <button class="btn" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' });">Discover More</button>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="animate-on-scroll">
+            <h2>About Me</h2>
+            <p>
+                A highly skilled Senior Software Developer 👨‍💻 with extensive experience in collaborative environments 🤝, specializing in the development and integration of high quality software solutions 💻🔧. Proficient in multiple programming languages and tools 🛠️, showcasing flexibility throughout the software application development cycle 🔄. Shows outstanding communication and problem-solving abilities 🗣️💬🤔. Holds Bachelor's and Master's degrees in Computer Science 🎓📚.
+            </p>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="animate-on-scroll">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item animate-on-scroll">
+                    <h3>Senior .NET Developer</h3>
+                    <span>Remote Work | March 2025 - Present</span>
+                    <p>
+                        Build high-quality 🏆 web enterprise applications, modular monoliths, and microservices that streamline internal processes for a range of industries, covering the entire DTAP lifecycle from environment configuration to stable releases 🚀 and ongoing maintenance 🔧.
+                        Manage the complete development stack—from front-end to back-end—applying Clean Code, SOLID principles, Domain-Driven Design (DDD), and modern practices like Dependency Injection, RESTful APIs, and Test-Driven Development (TDD). Harness .NET / .NET Core, Blazor / Vue, MSSQL / PostgreSQL, GitHub Actions, Docker, Azure, and robust CI/CD pipelines to ensure reliable, maintainable solutions.
+                        Actively employ AI-driven tools 🤖 to uphold top-tier code quality, stay aligned with evolving industry standards, and seamlessly integrate AI capabilities into software solutions when needed.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>Software Developer</h3>
+                    <span>ECONFAIRE IMMERSIVE DESIGN | September 2023 - February 2025</span>
+                    <p>
+                        ✅ Managing a team to design and deliver high-quality web software solutions.
+                        ✅ Utilizing technologies: .NET/.NET Core, C#, JavaScript, MSSQL, SSMS, SonarQube, Visual Studio, Visual Studio Code, GitHub, Docker, GitHub Copilot, Microsoft Copilot and other AI assistants to facilitate the development of modern, high-quality software solutions.
+                        ✅ Enhancing architectural design efficiency through innovative software.
+                        ✅ Ensuring high standards of code quality and system performance.
+                        ✅ Actively participated over a period of time in developing software solutions to optimize workflows for architects using the Autodesk Revit application.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>Full Stack Developer</h3>
+                    <span>Expertware | March 2022 - January 2023</span>
+                    <p>
+                        ✅ Exhibited consistent active involvement in all phases of software development, consistently advocating for a modular architecture and adhering to clean code principles to create robust and maintainable projects.
+                        ✅ Delivered dependable, high-quality software solutions tailored to meet client requirements, leveraging a range of contemporary technologies such as .NET/.NET Core, C#, VueJs, MSSQL, SSMS, HTML, CSS, JavaScript, Visual Studio, and Visual Studio Code.
+                        ✅ Explored and integrated other intriguing technologies to improve the development process and expand the functionalities of the software solutions delivered.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>R&D Software Developer</h3>
+                    <span>ECONFAIRE IMMERSIVE DESIGN | August 2020 - March 2022</span>
+                    <p>
+                        ✅ Orchestrated a cross-functional team to plan, oversee, and carry out sprints through the Scrum methodology, ensuring seamless project coordination and successful outcomes.
+                        ✅ Successfully developed and delivered top-notch, cross-platform software solutions using a wide range of technologies, including C++, wxWidgets, CUDA, OpenCV, Linux, MySQL, Apache, C#, and .NET.
+                        ✅ Incorporated Microsoft Power BI, Power Automate, Power Apps, and other robust tools from the Microsoft Power Platform to deploy advanced business intelligence solutions, promoting data-informed decision-making processes.
+                        ✅ Fostered a collaborative team environment, promoting effective communication and knowledge sharing.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>C++ Developer</h3>
+                    <span>Cronoxy Soft | August 2019 - August 2020</span>
+                    <p>
+                        ✅ Led the development of cross-platform GUI applications with a strong emphasis on quality, utilizing the powerful wxWidgets library to create graphical components for Windows and Linux systems.
+                        ✅ Showcased expertise in utilizing advanced technologies, including OpenCV for sophisticated image processing, Curl for smooth data transfer, and the CUDA parallel computing platform for accelerated graphics data processing on NVIDIA GPUs.
+                        ✅ Efficiently incorporated MySQL for robust database management and Apache server for effective web hosting capabilities into project structures.
+                        ✅ Assumed the position of Project Manager, proficiently managing tasks like planning, organizing, and executing sprints using the Scrum methodology
+                        ✅ Dedicated to providing top-notch software solutions that combine innovation and efficiency, continuously striving to improve user satisfaction and business results.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>Junior Full Stack Web Developer</h3>
+                    <span>Various Projects | October 2018 - August 2019</span>
+                    <p>
+                        ✅ Involved in Web Front-end development with Yii 2.0 Framework, crafting dynamic and user-friendly interfaces for seamless user experiences.
+                        ✅ Proficient in Web Back-end development with Yii 1.1 Framework, building robust and efficient server-side functions to bolster web applications.
+                        ✅ Handled, optimized, and maintained MySQL databases to ensure peak performance and data integrity.
+                        ✅ Skilled in setting up, configuring, and managing Apache servers on Linux platforms, ensuring dependable web hosting solutions
+                        ✅ Implemented application integration with REST / SOAP and diverse APIs like Google Maps, social media logins, payment gateways, and other services to enrich application capabilities and features.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & Certifications Section -->
+        <section id="skills" class="animate-on-scroll">
+            <h2>Skills & Certifications</h2>
+            <div class="grid-list">
+                <div class="grid-item">
+                    <h3>.NET / .NET Core</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Clean Code Architecture</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Microservices</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Master's Degree Certificate</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Certificate of Achievement</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Engineer Degree</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="animate-on-scroll">
+            <h2>Education</h2>
+            <div class="grid-list">
+                <div class="grid-item">
+                    <h3>Master's Degree</h3>
+                    <p>Universitatea „Ștefan cel Mare” din Suceava</p>
+                    <p>Electronic Engineering, Telecommunications & IT</p>
+                    <p>October 2018 - July 2020</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Bachelor's Degree</h3>
+                    <p>Universitatea „Ștefan cel Mare” din Suceava</p>
+                    <p>Electrical Engineering & Computer Science</p>
+                    <p>October 2014 - July 2018</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="animate-on-scroll">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:kovanzhy.yurii@gmail.com">kovanzhy.yurii@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/yurii-kovanzhy" target="_blank">linkedin.com/in/yurii-kovanzhy</a></p>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="scrollTopBtn" onclick="topFunction()">&#8679;</button>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Yurii Kovanzhy. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript: Intersection Observer and Scroll Events -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Intersection Observer to add 'visible' class on scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        });
+
+        // Back-to-top button functionality
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        function topFunction() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
