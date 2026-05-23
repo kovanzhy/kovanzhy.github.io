@@ -1,0 +1,971 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yurii Kovanzhy | Portfolio</title>
+    <!-- Modern font stack -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Theme */
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary-color: #ec4899;
+            --accent-color: #06b6d4;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #94a3b8;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #64748b;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: #334155;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: var(--transition-base);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-base);
+        }
+
+        /* Header and Navigation - Glassmorphism */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: var(--transition-base);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow-lg);
+        }
+
+        [data-theme="dark"] header.scrolled {
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo a {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: var(--transition-base);
+            letter-spacing: -0.02em;
+        }
+
+        .logo a:hover {
+            transform: scale(1.05);
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .menu a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            background: var(--bg-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-base);
+            margin-left: 1rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-secondary);
+            transform: rotate(180deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: white;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-base);
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
+
+        /* Main Content Sections */
+        section {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        section h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: -0.02em;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        section > p {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Timeline for Experience */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition-slow);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.75rem;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            box-shadow: 0 0 0 4px var(--bg-primary);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-item span {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .timeline-item span::before {
+            content: '📅';
+            font-size: 1rem;
+        }
+
+        .timeline-item p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        /* Grid Layout for Skills and Education */
+        .grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
+        }
+
+        .grid-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .grid-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .grid-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        #contact a {
+            color: var(--primary-color);
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition-base);
+        }
+
+        #contact a:hover {
+            border-bottom-color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            margin-top: 6rem;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top Button */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 999;
+            box-shadow: var(--shadow-xl);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-base);
+        }
+
+        #scrollTopBtn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #scrollTopBtn:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        /* Animation on Scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-on-scroll:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+
+        .animate-on-scroll:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        .animate-on-scroll:nth-child(4) {
+            transition-delay: 0.3s;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 968px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .menu {
+                gap: 1.5rem;
+            }
+
+            .menu a {
+                font-size: 0.9rem;
+            }
+
+            .theme-toggle {
+                width: 44px;
+                height: 44px;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.25rem;
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .logo {
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            section {
+                margin: 4rem auto;
+                padding: 0 1.5rem;
+            }
+
+            .timeline {
+                padding-left: 0;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .timeline-item::before {
+                display: none;
+            }
+
+            .timeline-item:hover {
+                transform: translateX(0) scale(1.02);
+            }
+
+            .grid-list {
+                grid-template-columns: 1fr;
+            }
+
+            #scrollTopBtn {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.75rem;
+            }
+
+            .logo a {
+                font-size: 1.25rem;
+            }
+
+            section {
+                margin: 3rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <a href="https://www.linkedin.com/in/yurii-kovanzhy/" target="_blank"><strong>Yurii Kovanzhy</strong></a>
+            </div>
+            <div class="menu">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="particles" id="particles"></div>
+            <div class="hero-content">
+                <h1>Yurii Kovanzhy</h1>
+                <p class="subtitle">Software Engineer | Senior .NET Developer</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' });">Discover More</button>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="animate-on-scroll">
+            <h2>About Me</h2>
+            <p>
+                A highly skilled Senior Software Developer 👨‍💻 with extensive experience in collaborative environments 🤝, specializing in the development and integration of high quality software solutions 💻🔧. Proficient in multiple programming languages and tools 🛠️, showcasing flexibility throughout the software application development cycle 🔄. Shows outstanding communication and problem-solving abilities. Holds Bachelor's and Master's degrees in Computer Science 🎓📚.
+            </p>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="animate-on-scroll">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item animate-on-scroll">
+                    <h3>Senior .NET Developer</h3>
+                    <span>Remote Work | March 2025 - Present</span>
+                    <p>
+                        Build high-quality 🏆 web enterprise applications, modular monoliths, and microservices that streamline internal processes for a range of industries, covering the entire DTAP lifecycle from environment configuration to stable releases 🚀 and ongoing maintenance 🔧.
+                        Manage the complete development stack—from front-end to back-end—applying Clean Code, SOLID principles, Domain-Driven Design (DDD), and modern practices like Dependency Injection, RESTful APIs, and Test-Driven Development (TDD). Harness .NET / .NET Core, Blazor / Vue, MSSQL / PostgreSQL, GitHub Actions, Docker, Azure, and robust CI/CD pipelines to ensure reliable, maintainable solutions.
+                        Actively employ AI-driven tools 🤖 to uphold top-tier code quality, stay aligned with evolving industry standards, and seamlessly integrate AI capabilities into software solutions when needed.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>Software Developer</h3>
+                    <span>ECONFAIRE IMMERSIVE DESIGN | September 2023 - February 2025</span>
+                    <p>
+                        ✅ Managing a team to design and deliver high-quality web software solutions.
+                        ✅ Utilizing technologies: .NET/.NET Core, C#, JavaScript, MSSQL, SSMS, SonarQube, Visual Studio, Visual Studio Code, GitHub, Docker, GitHub Copilot, Microsoft Copilot and other AI assistants to facilitate the development of modern, high-quality software solutions.
+                        ✅ Enhancing architectural design efficiency through innovative software.
+                        ✅ Ensuring high standards of code quality and system performance.
+                        ✅ Actively participated over a period of time in developing software solutions to optimize workflows for architects using the Autodesk Revit application.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>Full Stack Developer</h3>
+                    <span>Expertware | March 2022 - January 2023</span>
+                    <p>
+                        ✅ Exhibited consistent active involvement in all phases of software development, consistently advocating for a modular architecture and adhering to clean code principles to create robust and maintainable projects.
+                        ✅ Delivered dependable, high-quality software solutions tailored to meet client requirements, leveraging a range of contemporary technologies such as .NET/.NET Core, C#, VueJs, MSSQL, SSMS, HTML, CSS, JavaScript, Visual Studio, and Visual Studio Code.
+                        ✅ Explored and integrated other intriguing technologies to improve the development process and expand the functionalities of the software solutions delivered.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>R&D Software Developer</h3>
+                    <span>ECONFAIRE IMMERSIVE DESIGN | August 2020 - March 2022</span>
+                    <p>
+                        ✅ Orchestrated a cross-functional team to plan, oversee, and carry out sprints through the Scrum methodology, ensuring seamless project coordination and successful outcomes.
+                        ✅ Successfully developed and delivered top-notch, cross-platform software solutions using a wide range of technologies, including C++, wxWidgets, CUDA, OpenCV, Linux, MySQL, Apache, C#, and .NET.
+                        ✅ Incorporated Microsoft Power BI, Power Automate, Power Apps, and other robust tools from the Microsoft Power Platform to deploy advanced business intelligence solutions, promoting data-informed decision-making processes.
+                        ✅ Fostered a collaborative team environment, promoting effective communication and knowledge sharing.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>C++ Developer</h3>
+                    <span>Cronoxy Soft | August 2019 - August 2020</span>
+                    <p>
+                        ✅ Led the development of cross-platform GUI applications with a strong emphasis on quality, utilizing the powerful wxWidgets library to create graphical components for Windows and Linux systems.
+                        ✅ Showcased expertise in utilizing advanced technologies, including OpenCV for sophisticated image processing, Curl for smooth data transfer, and the CUDA parallel computing platform for accelerated graphics data processing on NVIDIA GPUs.
+                        ✅ Efficiently incorporated MySQL for robust database management and Apache server for effective web hosting capabilities into project structures.
+                        ✅ Assumed the position of Project Manager, proficiently managing tasks like planning, organizing, and executing sprints using the Scrum methodology
+                        ✅ Dedicated to providing top-notch software solutions that combine innovation and efficiency, continuously striving to improve user satisfaction and business results.
+                    </p>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <h3>Junior Full Stack Web Developer</h3>
+                    <span>Various Projects | October 2018 - August 2019</span>
+                    <p>
+                        ✅ Involved in Web Front-end development with Yii 2.0 Framework, crafting dynamic and user-friendly interfaces for seamless user experiences.
+                        ✅ Proficient in Web Back-end development with Yii 1.1 Framework, building robust and efficient server-side functions to bolster web applications.
+                        ✅ Handled, optimized, and maintained MySQL databases to ensure peak performance and data integrity.
+                        ✅ Skilled in setting up, configuring, and managing Apache servers on Linux platforms, ensuring dependable web hosting solutions
+                        ✅ Implemented application integration with REST / SOAP and diverse APIs like Google Maps, social media logins, payment gateways, and other services to enrich application capabilities and features.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & Certifications Section -->
+        <section id="skills" class="animate-on-scroll">
+            <h2>Skills & Certifications</h2>
+            <div class="grid-list">
+                <div class="grid-item">
+                    <h3>.NET / .NET Core</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Clean Code Architecture</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Microservices</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Master's Degree Certificate</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Certificate of Achievement</h3>
+                </div>
+                <div class="grid-item">
+                    <h3>Engineer Degree</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="animate-on-scroll">
+            <h2>Education</h2>
+            <div class="grid-list">
+                <div class="grid-item">
+                    <h3>Master's Degree</h3>
+                    <p>Universitatea „Ștefan cel Mare” din Suceava</p>
+                    <p>Electronic Engineering, Telecommunications & IT</p>
+                    <p>October 2018 - July 2020</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Bachelor's Degree</h3>
+                    <p>Universitatea „Ștefan cel Mare” din Suceava</p>
+                    <p>Electrical Engineering & Computer Science</p>
+                    <p>October 2014 - July 2018</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="animate-on-scroll">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:kovanzhy.yurii@gmail.com">kovanzhy.yurii@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/yurii-kovanzhy" target="_blank">linkedin.com/in/yurii-kovanzhy</a></p>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="scrollTopBtn" onclick="topFunction()">&#8679;</button>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Yurii Kovanzhy. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript: Enhanced Functionality -->
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const theme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer to add 'visible' class on scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+            // Create floating particles
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        });
+
+        // Back-to-top button functionality
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        function topFunction() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add smooth hover effects to timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(8px)';
+            });
+
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+    </script>
+</body>
+</html>
