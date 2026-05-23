@@ -342,6 +342,36 @@
         /* ── Experience ── */
         .exp-list { display: flex; flex-direction: column; gap: 1px; }
 
+        .resume-link {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.35rem;
+            margin-top: 3rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--white);
+            transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+        }
+
+        .resume-link svg {
+            width: 0.8em;
+            height: 0.8em;
+            flex: 0 0 auto;
+            color: var(--green);
+            stroke-width: 2.25;
+            transform: translateY(0.08em);
+            transition: transform 0.2s var(--ease), color 0.2s var(--ease);
+        }
+
+        .resume-link:hover {
+            color: var(--green);
+            transform: translateX(2px);
+        }
+
+        .resume-link:hover svg {
+            transform: translate(0.16em, -0.12em);
+        }
+
         .exp-card {
             position: relative;
             padding: 2rem 2rem 2rem 3rem;
@@ -877,6 +907,13 @@
             </div>
 
         </div>
+        <a class="resume-link" href="public/Yurii_Kovanzhy_CV.pdf" target="_blank" rel="noopener">
+            View Full Résumé
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7"></path>
+                <path d="M9 7h8v8"></path>
+            </svg>
+        </a>
     </section>
 
     <!-- 03 Skills -->
