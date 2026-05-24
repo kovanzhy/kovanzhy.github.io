@@ -412,7 +412,6 @@
             border-radius: 6px;
             border: 1px solid transparent;
             transition: all 0.25s var(--ease);
-            cursor: pointer;
         }
 
         .exp-card::before {
@@ -485,9 +484,11 @@
             mask-repeat: no-repeat;
         }
 
-        .exp-at a:hover { color: var(--green); }
+        .exp-at a:hover,
+        .exp-card:hover .exp-at a { color: var(--green); }
 
-        .exp-at a:hover::after {
+        .exp-at a:hover::after,
+        .exp-card:hover .exp-at a::after {
             opacity: 1;
             transform: translate(2px, -2px);
         }
@@ -581,7 +582,6 @@
             border: 1px solid rgba(100, 255, 218, 0.06);
             background: var(--navy-card);
             transition: border-color 0.25s;
-            cursor: pointer;
         }
 
         .edu-card:hover {
@@ -636,9 +636,11 @@
             mask-repeat: no-repeat;
         }
 
-        .edu-school a:hover { color: var(--green); }
+        .edu-school a:hover,
+        .edu-card:hover .edu-school a { color: var(--green); }
 
-        .edu-school a:hover::after {
+        .edu-school a:hover::after,
+        .edu-card:hover .edu-school a::after {
             opacity: 1;
             transform: translate(2px, -2px);
         }
@@ -1318,24 +1320,6 @@
         });
     });
 
-    // Education cards → USV
-    document.querySelectorAll('.edu-card').forEach(card => {
-        card.addEventListener('click', e => {
-            if (!e.target.closest('a')) {
-                window.open('https://usv.ro/', '_blank', 'noopener');
-            }
-        });
-    });
-
-    // Experience cards → company link
-    document.querySelectorAll('.exp-card').forEach(card => {
-        card.addEventListener('click', e => {
-            if (!e.target.closest('a')) {
-                const link = card.querySelector('.exp-at a');
-                if (link) window.open(link.href, '_blank', 'noopener');
-            }
-        });
-    });
 
     // Mobile menu
     const hamburger = document.getElementById('hamburger');
