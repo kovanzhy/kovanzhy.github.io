@@ -12,11 +12,11 @@ Senior Fullstack Engineer based in Bucharest, Romania. B2B contractor specialisi
 
 - [x] **CV download/open new tab** — add a PDF resume download button in the hero or nav or both; could also open a hosted PDF in a new tab instead of downloading
 - [x] **Mobile nav** — hamburger menu for small screens (nav links currently hidden on mobile)
-- [ ] **Company URLs** — replace LinkedIn placeholders in experience cards with real company links when available
-- [ ] **Open Graph / SEO meta tags** — title, description, og:image so link previews look right when shared on LinkedIn or elsewhere
+- [x] **Company URLs** — replace LinkedIn placeholders in experience cards with real company links when available
+- [x] **Print stylesheet** — `@media print` so the portfolio can double as a readable PDF if needed
 - [ ] **Projects section** — if public or shareable work exists, a dedicated section beats listing it on LinkedIn
+- [ ] **Open Graph / SEO meta tags** — title, description, og:image so link previews look right when shared on LinkedIn or elsewhere
 - [ ] **Plausible or Fathom analytics** — lightweight, privacy-friendly, no cookie banner needed; good to know where traffic comes from
-- [ ] **Print stylesheet** — `@media print` so the portfolio can double as a readable PDF if needed
 - [ ] **`v4` redesign candidate** — explore a split-screen or editorial layout as a future version
 
 ## Connect

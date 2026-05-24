@@ -867,6 +867,98 @@
                 opacity: 1;
             }
         }
+
+        @media print {
+            * { animation: none !important; transition: none !important; }
+
+            body {
+                background: #fff !important;
+                background-image: none !important;
+                color: #111 !important;
+            }
+
+            #progress,
+            nav,
+            .nav-hamburger,
+            #mobile-menu,
+            .hero-actions,
+            .cursor { display: none !important; }
+
+            .hero {
+                min-height: auto;
+                padding-top: 2rem;
+                padding-bottom: 1rem;
+            }
+
+            .hero-name { color: #111 !important; font-size: 2.5rem; }
+            .hero-title { color: #444 !important; font-size: 1.2rem; min-height: auto; }
+            .hero-desc { color: #444 !important; }
+
+            .content { padding: 0 2rem 2rem; }
+
+            .section { margin-bottom: 2.5rem; }
+            .section-num { display: none; }
+            .section-title { color: #111 !important; padding-left: 0; font-size: 1.1rem; }
+            .section-line { background: #ccc !important; }
+
+            .about-grid p { color: #444 !important; }
+            .about-grid p strong { color: #111 !important; }
+            .stat-num { color: #111 !important; }
+            .stat-label { color: #666 !important; }
+            .about-stat { border-top-color: #ddd !important; }
+
+            .exp-card {
+                background: transparent !important;
+                border: 1px solid #ddd !important;
+                break-inside: avoid;
+                margin-bottom: 0.75rem;
+            }
+
+            .exp-card::before { display: none; }
+            .exp-role { color: #111 !important; }
+            .exp-at a { color: #444 !important; }
+            .exp-at a::after { display: none; }
+            .exp-period { color: #666 !important; }
+            .exp-body { color: #444 !important; }
+
+            .tag {
+                background: transparent !important;
+                border-color: #bbb !important;
+                color: #555 !important;
+            }
+
+            .resume-link { display: none !important; }
+
+            .skill-tag {
+                background: transparent !important;
+                border-color: #bbb !important;
+                color: #555 !important;
+            }
+
+            .edu-card {
+                background: transparent !important;
+                border-color: #ddd !important;
+                break-inside: avoid;
+            }
+
+            .edu-icon { color: #444 !important; }
+            .edu-degree { color: #111 !important; }
+            .edu-school a { color: #444 !important; }
+            .edu-school a::after { display: none; }
+            .edu-meta { color: #666 !important; }
+
+            .contact-wrap p { color: #444 !important; }
+            .contact-card {
+                background: transparent !important;
+                border-color: #ddd !important;
+                color: #444 !important;
+            }
+            .contact-card svg { fill: #444 !important; }
+
+            footer { border-top-color: #ddd !important; }
+            footer p { color: #666 !important; }
+            footer span { color: #111 !important; }
+        }
     </style>
 </head>
 <body>
