@@ -694,8 +694,104 @@
             .edu-card { flex-direction: column; gap: 0.75rem; }
         }
 
+        /* ── Hamburger button ── */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--green);
+            border-radius: 2px;
+            transition: transform 0.3s var(--ease), opacity 0.2s;
+            transform-origin: center;
+        }
+
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── Mobile menu overlay ── */
+        #mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: var(--navy);
+            background-image: radial-gradient(rgba(100, 255, 218, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 2.5rem 3rem;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+        }
+
+        #mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: none;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .mobile-nav-links li {
+            border-bottom: 1px solid rgba(100, 255, 218, 0.06);
+        }
+
+        .mobile-nav-links a {
+            display: flex;
+            align-items: baseline;
+            gap: 0.65em;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            padding: 1rem 0;
+            transition: color 0.2s;
+            letter-spacing: -0.02em;
+        }
+
+        .mobile-nav-links a .num {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--green);
+            letter-spacing: 0.04em;
+        }
+
+        .mobile-nav-links a:hover { color: var(--green); }
+
+        .mobile-cta {
+            margin-top: 2.5rem;
+        }
+
+        .mobile-cta .btn {
+            width: 100%;
+            text-align: center;
+        }
+
         @media (max-width: 520px) {
             .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
 
             .hero { min-height: auto; padding-top: 80px; padding-bottom: 4rem; }
 
@@ -732,7 +828,24 @@
         <li><a href="#contact"><span class="num">05.</span> Contact</a></li>
     </ul>
     <a class="btn btn-primary nav-cta" href="mailto:kovanzhy.yurii@gmail.com">Contact me</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-nav-links">
+        <li><a href="#about"><span class="num">01.</span> About</a></li>
+        <li><a href="#experience"><span class="num">02.</span> Experience</a></li>
+        <li><a href="#skills"><span class="num">03.</span> Skills</a></li>
+        <li><a href="#education"><span class="num">04.</span> Education</a></li>
+        <li><a href="#contact"><span class="num">05.</span> Contact</a></li>
+    </ul>
+    <div class="mobile-cta">
+        <a class="btn btn-primary" href="mailto:kovanzhy.yurii@gmail.com">Contact me</a>
+    </div>
+</div>
 
 <!-- Hero -->
 <section class="hero">
@@ -1164,6 +1277,34 @@
                 window.open('https://www.linkedin.com/in/yurii-kovanzhy/', '_blank', 'noopener');
             }
         });
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function openMenu() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    mobileMenu.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => closeMenu());
     });
 
     // Reveal on scroll
