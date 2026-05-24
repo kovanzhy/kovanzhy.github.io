@@ -464,9 +464,33 @@
         .exp-at a {
             color: var(--slate);
             transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25em;
+        }
+
+        .exp-at a::after {
+            content: '';
+            display: inline-block;
+            width: 0.65em;
+            height: 0.65em;
+            background-color: currentColor;
+            opacity: 0.5;
+            transition: opacity 0.2s, transform 0.2s var(--ease);
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7'/%3E%3Cpath d='M9 7h8v8'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7'/%3E%3Cpath d='M9 7h8v8'/%3E%3C/svg%3E");
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
         }
 
         .exp-at a:hover { color: var(--green); }
+
+        .exp-at a:hover::after {
+            opacity: 1;
+            transform: translate(2px, -2px);
+        }
 
         .exp-period {
             font-family: var(--mono);
@@ -948,7 +972,7 @@
                     <div>
                         <div class="exp-role">.NET Lead Developer</div>
                         <div class="exp-at">
-                            <a href="https://www.linkedin.com/in/yurii-kovanzhy/" target="_blank" rel="noopener">eConfaire ID</a>
+                            <a href="https://econfaire.ro/" target="_blank" rel="noopener">Econfaire Immersive Design</a>
                         </div>
                     </div>
                     <div class="exp-period">Sep 2023 — Mar 2025</div>
@@ -972,7 +996,7 @@
                     <div>
                         <div class="exp-role">Full Stack Developer</div>
                         <div class="exp-at">
-                            <a href="https://www.linkedin.com/in/yurii-kovanzhy/" target="_blank" rel="noopener">Expertware</a>
+                            <a href="https://expertware.net/" target="_blank" rel="noopener">Expertware</a>
                         </div>
                     </div>
                     <div class="exp-period">Mar 2022 — Jan 2023</div>
@@ -994,7 +1018,7 @@
                     <div>
                         <div class="exp-role">R&amp;D Software Developer</div>
                         <div class="exp-at">
-                            <a href="https://www.linkedin.com/in/yurii-kovanzhy/" target="_blank" rel="noopener">ECONFAIRE IMMERSIVE DESIGN</a>
+                            <a href="https://econfaire.ro/" target="_blank" rel="noopener">Econfaire Immersive Design</a>
                         </div>
                     </div>
                     <div class="exp-period">Aug 2020 — Mar 2022</div>
@@ -1019,7 +1043,7 @@
                     <div>
                         <div class="exp-role">C++ Developer</div>
                         <div class="exp-at">
-                            <a href="https://www.linkedin.com/in/yurii-kovanzhy/" target="_blank" rel="noopener">Cronoxy Soft</a>
+                            <a href="https://cronoxy.ro/" target="_blank" rel="noopener">Cronoxy Soft</a>
                         </div>
                     </div>
                     <div class="exp-period">Aug 2019 — Aug 2020</div>
@@ -1043,7 +1067,7 @@
                     <div>
                         <div class="exp-role">Junior Full Stack Developer</div>
                         <div class="exp-at">
-                            <a href="https://www.linkedin.com/in/yurii-kovanzhy/" target="_blank" rel="noopener">Cronoxy Soft</a>
+                            <a href="https://cronoxy.ro/" target="_blank" rel="noopener">Cronoxy Soft</a>
                         </div>
                     </div>
                     <div class="exp-period">Oct 2018 — Aug 2019</div>
@@ -1270,11 +1294,12 @@
         });
     });
 
-    // Experience cards → LinkedIn
+    // Experience cards → company link
     document.querySelectorAll('.exp-card').forEach(card => {
         card.addEventListener('click', e => {
             if (!e.target.closest('a')) {
-                window.open('https://www.linkedin.com/in/yurii-kovanzhy/', '_blank', 'noopener');
+                const link = card.querySelector('.exp-at a');
+                if (link) window.open(link.href, '_blank', 'noopener');
             }
         });
     });
